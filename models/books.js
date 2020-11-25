@@ -8,8 +8,16 @@ let BookSchema = new Schema({
     Author: String,
     ISBN: {
         type: String,
-        min: 13,
-        max: 13
+        validate: {
+            validator: function(v) {
+              return /\d{13}/.test(v);
+            },
+            message: props => `${props.value} is not a valid ISBN!`
+          },
+          required: [true, 'ISBN required']
     },
     Price: SchemaTypes.Double
 });
+
+
+module.exports = mongoose.model('Book', BookSchema);
