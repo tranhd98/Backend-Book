@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-require('mongoose-double')(mongoose);
+
 
 let Schema = mongoose.Schema;
 var SchemaTypes = mongoose.Schema.Types;
@@ -16,7 +16,7 @@ let BookSchema = new Schema({
           },
           required: [true, 'ISBN required']
     },
-    Price: SchemaTypes.Double
+    Price: mongoose.Decimal128
 });
 
 
